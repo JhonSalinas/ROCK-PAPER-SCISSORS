@@ -42,7 +42,7 @@ let tiedScore = 0;
 //game
 
 function game(){
-    let gameRounds = prompt("choose the game's rounds",1);
+    let gameRounds = prompt("choose the game's rounds",5);
     for(let i = 0; i < gameRounds; i++ ){
         playerSelection = prompt("choose between: rock, paper or scissors").toLowerCase();
         if(playerSelection == "paper" || playerSelection == "rock" || playerSelection == "scisors"){
