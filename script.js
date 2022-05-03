@@ -18,32 +18,46 @@ function playRound(playerSelection = playerSelection, computerSelection = comput
         return "You Win! Rock beats Scissors";
     }
     if(playerSelection=="paper" && computerSelection=="rock"){
+        ++winScore;
         return "You Win! Paper beats Rock";
     }else if(playerSelection=="paper" && computerSelection=="scissors"){
         return "You Lose! Paper not beats Scissors";
     }
     if(playerSelection=="scissors" && computerSelection=="paper"){
+        ++winScore;
         return "You Win! Scissors beats Paper";
     }else if(playerSelection=="scissors" && computerSelection=="rock"){
         return "You Lose! Scissors not beats Rock";
     }
-    //
+    //recursivity
     if(playerSelection==computerSelection){
-        ++tiedScore;
-        return "tied Game";
+        return playRound(playerSelection,computerPlay());
     }
 }
 
 //for score
-
+let countGames = 0;
 let winScore = 0;
-let tiedScore = 0;
 
-//game
+//for UI
 
-function game(){
-    let gameRounds = prompt("choose the game's rounds",5);
-    for(let i = 0; i < gameRounds; i++ ){
+const bttns = document.querySelectorAll('button');
+
+bttns.forEach((e) => e.addEventListener('click',() => {
+    if(countGames == 5) {
+        console.log(winScore>2?'you Win':'you Lose');
+        return;
+    };
+    countGames++;
+    const game = playRound(e.textContent,computerPlay());
+    document.querySelector('div.score').textContent = `in this round ${game}, and your score is: ${winScore} wins with ${countGames-winScore} loses in ${countGames} rounds`
+}));
+
+//game with UI
+
+function gameUi(){
+    //let gameRounds = prompt("choose the game's rounds",5);
+
         playerSelection = prompt("choose between: rock, paper or scissors").toLowerCase();
         if(playerSelection == "paper" || playerSelection == "rock" || playerSelection == "scisors"){
             alert(playRound(playerSelection, computerPlay()));
@@ -51,15 +65,6 @@ function game(){
             i--;
             alert("your input not its valid, please only use: rock, paper or scissors");
         }
-    }
+
     alert(`your score is: ${winScore} wins, ${gameRounds - (winScore + tiedScore)} loses and ${tiedScore} tieds`);
 }
-
-//for UI
-
-const bttns = document.querySelectorAll('button');
-
-bttns.forEach((e) => e.addEventListener('click',() => {
-    console.log(e.textContent);
-    alert(playRound(e.textContent,computerPlay()));
-}));
