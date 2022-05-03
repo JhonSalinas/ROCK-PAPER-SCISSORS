@@ -50,21 +50,6 @@ bttns.forEach((e) => e.addEventListener('click',() => {
     };
     countGames++;
     const game = playRound(e.textContent,computerPlay());
-    document.querySelector('div.score').textContent = `in this round ${game}, and your score is: ${winScore} wins with ${countGames-winScore} loses in ${countGames} rounds`
+    document.querySelector('div.score').textContent = `in this round ${game}, and your score is: ${winScore} 
+            wins with ${countGames-winScore} loses in ${countGames} rounds`
 }));
-
-//game with UI
-
-function gameUi(){
-    //let gameRounds = prompt("choose the game's rounds",5);
-
-        playerSelection = prompt("choose between: rock, paper or scissors").toLowerCase();
-        if(playerSelection == "paper" || playerSelection == "rock" || playerSelection == "scisors"){
-            alert(playRound(playerSelection, computerPlay()));
-        }else{
-            i--;
-            alert("your input not its valid, please only use: rock, paper or scissors");
-        }
-
-    alert(`your score is: ${winScore} wins, ${gameRounds - (winScore + tiedScore)} loses and ${tiedScore} tieds`);
-}
