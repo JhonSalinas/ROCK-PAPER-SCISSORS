@@ -55,4 +55,11 @@ function game(){
     alert(`your score is: ${winScore} wins, ${gameRounds - (winScore + tiedScore)} loses and ${tiedScore} tieds`);
 }
 
-game();
+//for UI
+
+const bttns = document.querySelectorAll('button');
+
+bttns.forEach((e) => e.addEventListener('click',() => {
+    console.log(e.textContent);
+    alert(playRound(e.textContent,computerPlay()));
+}));
